@@ -1,0 +1,2 @@
+https://support.atlassian.com/jira-software-cloud/docs/jql-fields/
+https://support.atlassian.com/jira-software-cloud/docs/jql-functions/
