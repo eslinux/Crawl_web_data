@@ -184,7 +184,7 @@ def extract_webpage_data_ex2(html_content):
 
 def main():
     arguments  = sys.argv
-    if len(arguments) != 2:
+    if (len(arguments) != 2) or (arguments [1] is None) or (len(arguments [1]) == 0):
         print("Please input url list file")
         return
     

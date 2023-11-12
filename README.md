@@ -6,10 +6,10 @@
 # Usage
    1. Input list of url to a text file, for example "ex1_links_non_scrollable.txt"
    2. Run command as below to crawl data
-           python crawlweb.py <url list file>
+           crawlWeb.bat <url list file>
 
       For example: 
-           python crawlweb.py ex1_links_non_scrollable.txt
+           crawlWeb.bat ex1_links_non_scrollable.txt
 
 # Documents reference:
 https://beautiful-soup-4.readthedocs.io/en/latest/
