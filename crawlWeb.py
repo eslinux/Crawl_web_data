@@ -120,14 +120,15 @@ def load_webpage_by_request(url):
         return None
     return response.content
 
-def load_webpage_by_browser(url):
+def load_webpage_by_browser(driver, url):
     #Scroll down load more
-    driver = webdriver.Chrome() 
+    # driver = webdriver.Chrome() 
     driver.get(url)
 
     # Get initial scroll height
     # last_height = driver.execute_script("return document.body.scrollHeight")
     last_height = driver.execute_script("return document.documentElement.scrollHeight")
+    time.sleep(SCROLL_SLEEP)
     # print(f"last_height: {last_height}")
     scroll_down_counter = 0
     while True:
@@ -155,7 +156,7 @@ def load_webpage_by_browser(url):
     #     time.sleep(10)
 
     full_html = driver.page_source
-    driver.quit()
+    # driver.quit()
     return full_html
 
 def save_file(save_content, file_path):
@@ -288,21 +289,25 @@ def main():
     url_input_file = arguments [1]
     print(f"Url list file: {url_input_file} ")
 
+    driver = webdriver.Chrome() 
+
     urls = get_url_list(url_input_file)
     number_of_url = len(urls)
     print(f"Number of url: {number_of_url} \n\n")
     for url_id, url_item in enumerate(urls):
         url = url_item.strip()
         print(f"{url_id + 1}  - {url}")
-        html_content = load_webpage_by_browser(url)
+        html_content = load_webpage_by_browser(driver, url)
         if (html_content is None) or (not html_content):
             print(f"Load webpage failed !")
             continue
         extract_webpage_data_ex1(url, html_content)
 
+    driver.close()
     save_crawl_to_excel(url_input_file)
     print("----- MAIN End------")
 
 if __name__ == '__main__':
     main()
+    #test_load_browser()
     
